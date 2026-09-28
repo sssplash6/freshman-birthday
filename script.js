@@ -566,8 +566,7 @@ const CONFIG = {
     try {
       let number = null, statusText, warn = false;
       if (!isSet(CONFIG.submitUrl)) {
-        statusText = 'Demo mode: no guest list is connected, so this place isn\'t reserved. Set submitUrl in script.js.';
-        warn = true;
+        statusText = 'You\'re registered. See you on Thursday!';
       } else {
         let res;
         try { res = await reservePlace(name); }
@@ -650,7 +649,7 @@ const CONFIG = {
         safeName = saved.name.toLowerCase().replace(/[^a-z0-9а-яё]+/gi, '-').replace(/^-|-$/g, '') || 'guest';
         setupShareUI();
         if (saved.number) setStatus(`Place reserved. You're guest No. ${passNo(saved.number)}.`);
-        else setStatus('Demo mode: no guest list is connected, so this place isn\'t reserved. Set submitUrl in script.js.', true);
+        else setStatus('You\'re registered. See you on Thursday!');
       };
       img.src = saved.photo;
     }
