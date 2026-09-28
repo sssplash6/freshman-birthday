@@ -5,7 +5,7 @@
 const CONFIG = {
   // Where RSVPs (name + photo) are sent. Paste your Google Apps Script
   // Web App URL here (see google-apps-script.gs and README.md).
-  submitUrl: '[SUBMIT URL]',
+  submitUrl: 'https://script.google.com/macros/s/AKfycbzGnHdLy-0luec_6MYeI9Xn_9i1a0Y_P5Yf3Tz-TmXJ2tzBJW0CuWYS3cm8VVXfwqE4Vw/exec',
 
   // Shown under "Freshman Office" in the details block and in the calendar file.
   address: 'Nest One, Block C, 15th floor, office 117',
