@@ -49,10 +49,8 @@ const CONFIG = {
   if (guest) {
     $$('[data-guest]').forEach(el => (el.textContent = guest + '.'));
     $$('[data-guest-name]').forEach(el => (el.textContent = guest));
-    $$('[data-guest-line]').forEach(el => (el.textContent = `${guest}, you're on the list`));
     const forEl = $('[data-guest-for]');
     if (forEl) { forEl.textContent = `This pass is for ${guest}.`; forEl.hidden = false; }
-    document.title = `${guest}, you're on the list · Freshman Birthday Party`;
   }
 
   /* ---------- fit text: every line in a group fills the same width ---------- */
@@ -120,7 +118,6 @@ const CONFIG = {
       'DTSTART:' + icsDate(start), 'DTEND:' + icsDate(end),
       'SUMMARY:' + CONFIG.calendarTitle,
       'LOCATION:' + place.replace(/,/g, '\\,'),
-      'DESCRIPTION:You\'re on the list.',
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
     const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
@@ -502,7 +499,6 @@ const CONFIG = {
       $$('[data-rsvp]').forEach(el => { el.textContent = 'Guest list is full'; el.classList.add('is-closed'); });
       const t = $('[data-rsvp-text]');
       if (t) t.innerHTML = 'Every place is taken. <em>Thank you for wanting to be there.</em>';
-      $$('[data-guest-line]').forEach(el => (el.textContent = 'The guest list is full'));
       fitAll();
     } else if (listState.left <= CONFIG.spotsHint) {
       spots.forEach(el => { el.textContent = `Only ${listState.left} place${listState.left === 1 ? '' : 's'} left`; el.hidden = false; });
