@@ -132,20 +132,17 @@ const CONFIG = {
   function countdown() {
     if (!cd) return;
     const ms = start - new Date();
-    const day = 864e5;
-    if (ms > day) {
-      const d = Math.floor(ms / day), h = Math.floor((ms % day) / 36e5);
-      cd.textContent = `Starts in ${d} day${d === 1 ? '' : 's'}, ${h} h`;
-    } else if (ms > 0) {
-      const h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4);
-      cd.textContent = h ? `Starts in ${h} h ${m} min` : `Starts in ${m} min`;
+    if (ms > 0) {
+      const t = Math.floor(ms / 1e3), pad = n => String(n).padStart(2, '0');
+      const d = Math.floor(t / 86400), h = Math.floor(t / 3600) % 24, m = Math.floor(t / 60) % 60;
+      cd.textContent = `Starts in ${d ? d + 'd ' : ''}${pad(h)}h ${pad(m)}m ${pad(t % 60)}s`;
     } else if (ms > -CONFIG.calendarHours * 36e5) {
       cd.textContent = 'Happening now';
     } else {
       cd.textContent = 'Thank you for being there';
     }
   }
-  countdown(); setInterval(countdown, 30e3);
+  countdown(); setInterval(countdown, 1e3);
 
   /* ---------- Photos: hide empty slots gracefully ---------- */
   $$('[data-photo]').forEach(img => {
