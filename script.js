@@ -641,6 +641,13 @@ const CONFIG = {
       const img = new Image();
       img.onload = async () => {
         photoCanvas = img; photoData = saved.photo;
+        // Pass made before the guest list was connected: register it now.
+        if (!saved.number && isSet(CONFIG.submitUrl)) {
+          try {
+            const res = await reservePlace(saved.name);
+            if (res && res.ok) { saved.number = res.number; save(saved); }
+          } catch (e) { /* offline: try again next visit */ }
+        }
         preview.appendChild(Object.assign(new Image(), { src: saved.photo, alt: '' }));
         $('[data-drop-title]').textContent = 'Change photo';
         const cv = await drawPass(saved.name, img, saved.number);
