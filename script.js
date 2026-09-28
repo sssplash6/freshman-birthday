@@ -135,7 +135,7 @@ const CONFIG = {
     if (ms > 0) {
       const t = Math.floor(ms / 1e3), pad = n => String(n).padStart(2, '0');
       const d = Math.floor(t / 86400), h = Math.floor(t / 3600) % 24, m = Math.floor(t / 60) % 60;
-      cd.textContent = `Starts in ${d ? d + 'd ' : ''}${pad(h)}h ${pad(m)}m ${pad(t % 60)}s`;
+      cd.textContent = `Starts in ${d ? d + 'd ' : ''}${pad(h)}h ${pad(m)}m`;
     } else if (ms > -CONFIG.calendarHours * 36e5) {
       cd.textContent = 'Happening now';
     } else {
